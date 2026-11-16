@@ -1,12 +1,21 @@
 #pragma once
-#include "Player.h"
-class Table
-{
-private:
-	const static int NumOfPlayers = 4;
-	Player players[NumOfPlayers];
+#ifndef TABLE_H
+#define TABLE_H
 
+using namespace std;
+
+#include <vector>
+#include <string>
+#include "Deck.h"
+#include "Player.h"
+
+class Table {
 public:
-	void BeginPlay();
+    Deck deck;
+    vector<Player> players;
+    Table(const vector<string>& names);
+    void dealInitial(int cardsPerPlayer = 5);
+    void showAllHands() const;
 };
 
+#endif // TABLE_H

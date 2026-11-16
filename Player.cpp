@@ -1,13 +1,24 @@
 #include "Player.h"
+#include <iostream>
 
-void Player::AddCardToHand(Card card, int index)
-{
-	m_hand[index] = card;
+using namespace std;
+
+Player::Player(const string& n) : name(n) {}
+
+void Player::receive(Card c) {
+    hand.push_back(c);
 }
 
-int Player::BetMoney(int money)
-{
-	m_PlayerMoney -= money;
-	m_PlayeBet = money;
-	return money;
+void Player::showHand() const {
+    cout << name << "'s hand: ";
+    for (auto& c : hand) cout << c.toString() << " ";
+    cout << endl;
+}
+
+string Player::getName() const {
+    return name;
+}
+
+void Player::clearHand() {
+    hand.clear();
 }

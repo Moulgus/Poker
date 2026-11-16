@@ -1,17 +1,11 @@
 #include <iostream>
-#include "Deck.h"
+#include "UI.h"
+#include "Game.h"
 
-using namespace std;
-
-
-
-
-
-
-int main()
-{
-	Deck deck;
-	deck.Shuffle();
-
-	return 0;
+int main() {
+    int num = UI::getPlayerCount();
+    auto names = UI::getPlayerNames(num);
+    Game game(names);
+    game.playRound();
+    return 0;
 }
