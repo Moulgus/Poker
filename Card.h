@@ -1,36 +1,16 @@
 #pragma once
+#ifndef CARD_H
+#define CARD_H
 
-enum class Color
-{
-    Hearts,
-    Spades,
-    Diamonds,
-    Cubes,
+#include <string>
 
-    Size
+enum class Suit { Clubs, Diamonds, Hearts, Spades };
+enum class Rank { Two = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace };
+
+struct Card {
+    Suit suit;
+    Rank rank;
+    std::string toString() const;
 };
 
-enum class Value
-{
-    Two,
-    Three,
-    Four,
-    Five,
-    Six,
-    Seven,
-    Eight,
-    Nine,
-    Ten,
-    Jack,
-    Queen,
-    King,
-    Ace,
-
-    Size
-};
-
-struct Card
-{
-    Color color;
-    Value value;
-};
+#endif // CARD_H

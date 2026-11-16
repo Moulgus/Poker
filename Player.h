@@ -1,16 +1,22 @@
 #pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
+
+#include <vector>
+#include <string>
 #include "Card.h"
-class Player
-{
+
+class Player {
 private:
-
-	Card m_hand[5];
-	int m_PlayerMoney;
-	int m_PlayeBet;
-
+    string name;
 public:
-	void AddCardToHand(Card card, int index);
-	int BetMoney(int money);
-
+    vector<Card> hand;
+    Player(const string& n);
+    void receive(Card c);
+    void showHand() const;
+    string getName() const;
+    void clearHand();
 };
+
+#endif // PLAYER_H
 

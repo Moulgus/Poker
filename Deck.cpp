@@ -1,44 +1,28 @@
 #include "Deck.h"
-#include <stdlib.h>
-#include <algorithm>
 #include <ctime>
+#include <algorithm>
 
+using namespace std;
 
-Deck::Deck()
-{
-	Initialize();
+Deck::Deck() : rng(static_cast<unsigned>(time(nullptr))) {
+    reset();
 }
 
-void Deck::Initialize()
-{
-	int CardsCounter = 0;
-	for (int i = 0; i < (int)Color::Size; i++)
-	{
-		for (int j = 0; j < (int)Value::Size; j++)
-		{
-			m_cards[CardsCounter].color = (Color)i;
-			m_cards[CardsCounter].value = (Value)j;
-
-			CardsCounter++;
-		}
-	}
+void Deck::reset() {
+    cards.clear();
+    for (int s = 0; s < 4; ++s) {
+        for (int r = 2; r <= 14; ++r) {
+            cards.push_back(Card{ static_cast<Suit>(s), static_cast<Rank>(r) });
+        }
+    }
 }
 
-void Deck::Shuffle()
-{
-	srand(time(nullptr));
-	const int size = (int)Color::Size * (int)Value::Size;
-	for (int i = 0; i < size; i++)
-	{
-		int randomIndex = rand() % size;
-
-		std::swap(m_cards[i], m_cards[i]);
-	}
+void Deck::shuffle() {
+    shuffle(cards.begin(), cards.end(), rng);
 }
 
-Card Deck::Deal(int index)
-{
-	Card card;
-	card = m_cards[index];
-	return card;
+Card Deck::deal() {
+    Card c = cards.back();
+    cards.pop_back();
+    return c;
 }
